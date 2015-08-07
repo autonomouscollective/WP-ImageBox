@@ -22,7 +22,7 @@ function wpib_image_box_js() {
 			}
 			alignment = $(this).data('alignment');
 			width = $(this).attr('width');
-
+		
 			$(this).wrap('<figure class="image-box '+alignment+'"/>');
 			$(this).after('<div class="image-meta" style="max-width:'+width+'px;">'+credit+caption+'</div>');
 	    });

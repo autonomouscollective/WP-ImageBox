@@ -92,13 +92,13 @@ function wpib_hijack_caption_shortcode($na, $atts, $content) {
 add_filter('img_caption_shortcode', 'wpib_hijack_caption_shortcode', 10, 3);
 
 /**
- * We do not want images without captions to have P tags so we're going to be stripping the P tag and replacing it with <figure> tags.
+ * We do not want images without captions to have P tags so we're going to be stripping the P tags.
  * @param  $content = post content well search for img tags.
  * @return filtered content with <p><img changed to <figure><img
  * @author Seth
  */
 function wpib_filter_ptags($content){
-   return preg_replace('/<p>\s*(<a .*>)?\s*(<img .* \/>)\s*(<\/a>)?\s*<\/p>/iU', '<figure>\1\2\3</figure>', $content);
+   return preg_replace('/<p>\s*(<a .*>)?\s*(<img .* \/>)\s*(<\/a>)?\s*<\/p>/iU', '\1\2\3', $content);
 }
 
 add_filter('the_content', 'wpib_filter_ptags');
