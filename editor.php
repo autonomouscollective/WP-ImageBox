@@ -16,7 +16,7 @@ function wpib_remove_insert_from_url($strings) {
 add_filter("media_view_strings", "wpib_remove_insert_from_url");
 
 /**
- * [wp_imag_data_attr description]
+ * [wpib_image_data_attr description]
  * @param {[type]} $html [description]
  * This function looks at the src url and retrieves some data by attachment id from that.
  * The matches are:
