@@ -62,7 +62,7 @@ function wpib_image_data_attr( $html ) {
     }
     $classes = implode(" ", $classes);
 
-    $html ='<img class="wp-photo '.esc_attr($classes).'" src="'.$src.'" width="'.$width.'" height="'.$height.'" data-credit="'.esc_attr($credit).'" data-attachid="'.esc_attr($attachment_id).'" data-alignment="'.esc_attr($alignment).'"/>';
+    $html ='<img class="wp-photo '.esc_attr($classes).' wp-image-'.$attachment_id.'" src="'.$src.'" width="'.$width.'" height="'.$height.'" data-credit="'.esc_attr($credit).'" data-attachid="'.esc_attr($attachment_id).'" data-alignment="'.esc_attr($alignment).'"/>';
 	return $html;
 }
 add_filter( 'image_send_to_editor', 'wpib_image_data_attr', 10 );
