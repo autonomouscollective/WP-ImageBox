@@ -47,7 +47,7 @@ function wpib_image_data_attr( $html ) {
     $src = $matches[3];
     $width = $matches[5];
     $height = $matches[6];
-	$credit = get_post_meta($attachment_id, '_wp_attachment_image_credit', true);
+	$credit = $matches[4];
     $data_attr_credit = null;
     if ($credit) {
         $data_attr_credit = 'data-credit="'.esc_attr($credit).'"';
@@ -67,7 +67,7 @@ function wpib_image_data_attr( $html ) {
     $classes[] = $alignment;
     $classes = implode(" ", $classes);
 
-    $html ='<img class="wp-photo '.esc_attr($classes).' wp-image-'.$attachment_id.'" src="'.$src.'" width="'.$width.'" height="'.$height.'" '.$data_attr_credit.' data-attachid="'.esc_attr($attachment_id).'" data-alignment="'.esc_attr($alignment).'"/>';
+    $html ='<img class="wp-photo '.esc_attr($classes).' wp-image-'.$attachment_id.'" src="'.$src.'" width="'.$width.'" height="'.$height.'" '.$data_attr_credit.' data-attachid="'.esc_attr($attachment_id).'" data-alignment="'.esc_attr($alignment).'" alt="'.esc_attr($caption).'"/>';
 	return $html;
 }
 add_filter( 'image_send_to_editor', 'wpib_image_data_attr', 10 );
@@ -90,7 +90,7 @@ function wpib_hijack_caption_shortcode($na, $atts, $content) {
     ), $atts));
 
     // We want to add the caption as a data-attr to the image.
-    $caption = str_replace('<img', '<img data-caption="'.$caption.'"', $content);
+    $caption = str_replace('<img', '<img data-caption="'.$caption.'" alt="'.$caption.'"', $content);
 
     return $caption;
 }
