@@ -48,6 +48,10 @@ function wpib_image_data_attr( $html ) {
     $width = $matches[5];
     $height = $matches[6];
 	$credit = get_post_meta($attachment_id, '_wp_attachment_image_credit', true);
+    $data_attr_credit = null;
+    if ($credit) {
+        $data_attr_credit = 'data-credit="'.esc_attr($credit).'"';
+    }
     $caption = $image_post->post_excerpt;
 
     $classes_array = explode(" ", $classes_match);
@@ -60,9 +64,10 @@ function wpib_image_data_attr( $html ) {
             $classes[] = $class;
         }
     }
+    $classes[] = $alignment;
     $classes = implode(" ", $classes);
 
-    $html ='<img class="wp-photo '.esc_attr($classes).' wp-image-'.$attachment_id.'" src="'.$src.'" width="'.$width.'" height="'.$height.'" data-credit="'.esc_attr($credit).'" data-attachid="'.esc_attr($attachment_id).'" data-alignment="'.esc_attr($alignment).'"/>';
+    $html ='<img class="wp-photo '.esc_attr($classes).' wp-image-'.$attachment_id.'" src="'.$src.'" width="'.$width.'" height="'.$height.'" '.$data_attr_credit.' data-attachid="'.esc_attr($attachment_id).'" data-alignment="'.esc_attr($alignment).'"/>';
 	return $html;
 }
 add_filter( 'image_send_to_editor', 'wpib_image_data_attr', 10 );
