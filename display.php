@@ -25,7 +25,11 @@ function wpib_image_box_js() {
 
 			$(this).wrap('<figure class="image-box '+alignment+'"/>');
 			if ( $(this).data('credit') != undefined || $(this).data('caption') != undefined ) {
-				$(this).after('<div class="image-meta" style="max-width:'+width+'px;">'+credit+caption+'</div>');
+				if ( $(this).data('alignment') == 'alignnone' ) {
+					$(this).after('<div class="image-meta">'+credit+caption+'</div>');
+				} else {
+					$(this).after('<div class="image-meta" style="max-width:'+width+'px;">'+credit+caption+'</div>');
+				}
 			}
 	    });
 	});
